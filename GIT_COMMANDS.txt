@@ -1,0 +1,56 @@
+# Git Commands to Push to GitHub
+
+## Step 1: Initialize Git (if not already done)
+cd D:\Ptyxiakhh\Smartphone_Activity_Recognition
+git init
+
+## Step 2: Add remote repository
+git remote add origin https://github.com/kitsakisGk/Smartphone_Activity_Recognition.git
+
+# Or if remote already exists, update it:
+git remote set-url origin https://github.com/kitsakisGk/Smartphone_Activity_Recognition.git
+
+## Step 3: Check what will be committed
+git status
+
+## Step 4: Add all files (Data folder is ignored by .gitignore)
+git add .
+
+## Step 5: Create commit (NO CO-AUTHOR!)
+git commit -m "Production-ready ML system for activity recognition
+
+- Refactored thesis project with ML engineering best practices
+- Added 7 models: 2 baselines (RF, LR) + 5 deep learning (CNN, LSTM, GRU, CNN-LSTM, CNN-GRU)
+- Implemented baseline comparison (proves 7-15% DL improvement)
+- Added time series windowing for LSTM/GRU models
+- Removed LOSO validation, using standard 80/20 split
+- Production features: logging, error handling, type hints
+- Created Streamlit web interface for real-time predictions
+- Added Docker deployment with docker-compose
+- Comprehensive documentation (README, guides, tutorials)
+- Optimized for slower laptops (30% data sampling, reduced epochs)"
+
+## Step 6: Push to GitHub
+git branch -M main
+git push -u origin main --force
+
+# If you get authentication error, you may need to:
+# 1. Generate Personal Access Token on GitHub (Settings > Developer > Tokens)
+# 2. Use token as password when prompted
+
+# Alternative: If branch already exists and you want to update
+git pull origin main --rebase
+git push origin main
+
+## Step 7: Verify GitHub Actions CI/CD
+# After pushing, check GitHub Actions:
+# 1. Go to: https://github.com/kitsakisGk/Smartphone_Activity_Recognition/actions
+# 2. You should see "CI - Lint and Test" workflow running
+# 3. It will check code syntax and project structure
+# 4. Green checkmark = all tests passed!
+
+## What GitHub Actions Does (Automatically):
+# - Runs flake8 to check Python code syntax
+# - Verifies all required folders exist (src/, scripts/, etc.)
+# - Checks README.md exists
+# This runs EVERY time you push to main or create a pull request
